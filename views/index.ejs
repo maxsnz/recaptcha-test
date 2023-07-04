@@ -7,8 +7,8 @@
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log("success");
-            alert(data.data);
+            console.log(data.data);
+            alert("success");
           })
           .catch(() => {
             alert("error");

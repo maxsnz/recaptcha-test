@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import nodeFetch from "node-fetch";
 import path from "path";
 import ejs from "ejs";
+const opn = require("better-opn");
 require("dotenv").config();
 
 const app = express();
@@ -38,6 +39,7 @@ app.get("/api", async (req: Request, res: Response) => {
   res.send({ data });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}`);
+  opn(`http://localhost:${process.env.PORT}`);
 });
