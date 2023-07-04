@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <script>
+      function onSubmit(token) {
+        fetch(`/api?token=${token}`, {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("success");
+            alert(data.data);
+          })
+          .catch(() => {
+            alert("error");
+          });
+      }
+
+      function validate(event) {
+        event.preventDefault();
+        grecaptcha.execute();
+      }
+
+      function onload() {
+        var element = document.getElementById("submit");
+        element.onclick = validate;
+      }
+    </script>
+    <script
+      src="https://www.google.com/recaptcha/api.js"
+      async
+      defer
+    ></script>
+  </head>
+  <body>
+    <form>
+      <div
+        id="recaptcha"
+        class="g-recaptcha"
+        data-sitekey="<?= SITEKEY ?>"
+        data-callback="onSubmit"
+        data-size="invisible"
+      ></div>
+      <button id="submit">submit</button>
+    </form>
+    <script>
+      onload();
+    </script>
+  </body>
+</html>
